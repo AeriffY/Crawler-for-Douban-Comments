@@ -7,7 +7,7 @@ import os
 DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'Ida2451212073',
+    'password': 'password',
     'database': 'movies',
     'charset': 'utf8mb4'
 }

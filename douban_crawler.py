@@ -329,7 +329,7 @@ def parse_comments_div(comments_div, movie_id):
     return comment
 
 def create_database():
-    with pymysql.connect(host='localhost', user='root', password='Ida2451212073') as db:
+    with pymysql.connect(host='localhost', user='root', password='password') as db:
         with db.cursor() as cursor:
             sql = "CREATE DATABASE IF NOT EXISTS movies"
             try:
@@ -339,7 +339,7 @@ def create_database():
                 print(e)
 
 def create_movies_table():
-    with pymysql.connect(host='localhost', user='root', password='Ida2451212073', database='movies') as db:
+    with pymysql.connect(host='localhost', user='root', password='password', database='movies') as db:
         with db.cursor() as cursor:
             cursor.execute("DROP TABLE IF EXISTS comments_list")
             cursor.execute("DROP TABLE IF EXISTS movies_list")
@@ -375,7 +375,7 @@ def create_movies_table():
                 print(e)
 
 def create_comments_table():
-    with pymysql.connect(host='localhost', user='root', password='Ida2451212073', database='movies') as db:
+    with pymysql.connect(host='localhost', user='root', password='password', database='movies') as db:
         with db.cursor() as cursor:
             cursor.execute("DROP TABLE IF EXISTS comments_list")
             sql = """CREATE TABLE comments_list(
@@ -405,7 +405,7 @@ def insert_movie_table(movieinfo):
         v = movieinfo.get(f, '')
         values.append(str(v) if v is not None else '')
     values = tuple(values)
-    db = pymysql.connect(host='localhost', user='root', password='Ida2451212073', database='movies')
+    db = pymysql.connect(host='localhost', user='root', password='password', database='movies')
     try:
         with db.cursor() as cursor:
             sql = f"""INSERT INTO movies_list({','.join(fields)})
@@ -426,7 +426,7 @@ def insert_movie_table(movieinfo):
 def insert_comments_table(comment):
     values = (comment['movie_id'], comment['user'], comment['star'],
               comment['time'], comment['useful'], comment['content'])
-    with pymysql.connect(host='localhost', user='root', password='Ida2451212073', database='movies') as db:
+    with pymysql.connect(host='localhost', user='root', password='password', database='movies') as db:
         with db.cursor() as cursor:
             sql = """INSERT INTO comments_list(movie_id,user,star,time,useful,content)
                 values(%s,%s,%s,%s,%s,%s)"""
